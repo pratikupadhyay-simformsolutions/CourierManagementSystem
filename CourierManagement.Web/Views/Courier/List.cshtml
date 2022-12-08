@@ -1,0 +1,57 @@
+﻿@model CourierManagement.Entities.ResponseModel<List<CourierManagement.Entities.Models.CourierModel>>
+
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Couriers List</h1>
+
+<p>
+    @Html.ActionLink("Create Courier", "Create")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Id")
+            </th>
+            <th>
+                @Html.DisplayName("Sender Name")
+            </th>
+            <th>
+                @Html.DisplayName("Customer Name")
+            </th>
+            <th>
+                @Html.DisplayName("Customer Address")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Result != null)
+        {
+            @foreach (var item in Model.Result)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SenderName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Create", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

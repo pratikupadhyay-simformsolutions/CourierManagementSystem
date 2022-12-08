@@ -1,0 +1,46 @@
+﻿@model CourierManagement.Entities.ResponseModel<CourierManagement.Entities.Models.CourierModel>
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    var buttonText = Model == null ? "Create" : "Edit";
+}
+
+<h1>@buttonText</h1>
+
+<h4>Courier</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @Html.HiddenFor(model => model.Result.Id)
+            <div class="form-group">
+                @Html.Label("Sender Name")
+                @Html.TextBoxFor(model => model.Result.SenderName)
+                @Html.ValidationMessageFor(model => model.Result.SenderName, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Customer Name")
+                @Html.TextBoxFor(model => model.Result.CustomerName)
+                @Html.ValidationMessageFor(model => model.Result.CustomerName, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Address")
+                @Html.TextBoxFor(model => model.Result.Address)
+                @Html.ValidationMessageFor(model => model.Result.Address, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@buttonText" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "List")
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
